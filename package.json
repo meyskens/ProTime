@@ -1,0 +1,148 @@
+{
+  "name": "ProTime",
+  "version": "1.0.0",
+  "description": "ProTime Watchface - NS/ProRail style watchface for Pebble smartwatches",
+  "main": "src/js/app.js",
+  "keywords": [
+    "pebble",
+    "watchface"
+  ],
+  "author": "Maartje Eyskens",
+  "license": "MIT",
+  "dependencies": {
+    "@rebble/clay": "^1.0.10"
+  },
+  "pebble": {
+    "displayName": "ProTime Watchface",
+    "uuid": "833996e1-7b66-45a4-a3ae-e77badba9486",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk",
+      "diorite",
+      "emery",
+      "flint",
+      "gabbro"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "messageKeys": {
+      "DialColor": 0,
+      "SecondHandOption": 1,
+      "DateOption": 2,
+      "HourlyVibration": 3,
+      "BluetoothStatusDetection": 4,
+      "RoundBackgroundColor": 5
+    },
+    "resources": {
+      "media": [
+        {
+          "file": "images/bluetooth-disconnect.png",
+          "name": "IMAGE_BLUETOOTHDISCONNECTED",
+          "type": "png"
+        },
+        {
+          "file": "images/bluetooth-connect.png",
+          "name": "IMAGE_BLUETOOTHCONNECTED",
+          "type": "png"
+        },
+        {
+          "file": "images/ns-menu-icon.png",
+          "menuIcon": true,
+          "name": "IMAGE_NS_MENU_ICON",
+          "type": "png"
+        },
+        {
+          "file": "images/ns-face-round-aplite.png",
+          "name": "IMAGE_NS_FACE_ROUND",
+          "type": "png",
+          "targetPlatforms": ["aplite"]
+        },
+        {
+          "file": "images/ns-face-round-color.png",
+          "name": "IMAGE_NS_FACE_ROUND",
+          "type": "png",
+          "targetPlatforms": ["basalt"]
+        },
+        {
+          "file": "images/ns-face-round-chalk.png",
+          "name": "IMAGE_NS_FACE_ROUND",
+          "type": "png",
+          "targetPlatforms": ["chalk"]
+        },
+        {
+          "file": "images/ns-face-round-diorite.png",
+          "name": "IMAGE_NS_FACE_ROUND",
+          "type": "png",
+          "targetPlatforms": ["diorite"]
+        },
+        {
+          "file": "images/ns-face-round-emery.png",
+          "name": "IMAGE_NS_FACE_ROUND",
+          "type": "png",
+          "targetPlatforms": ["emery"]
+        },
+        {
+          "file": "images/ns-face-round-flint.png",
+          "name": "IMAGE_NS_FACE_ROUND",
+          "type": "png",
+          "targetPlatforms": ["flint"]
+        },
+        {
+          "file": "images/ns-face-round-gabbro.png",
+          "name": "IMAGE_NS_FACE_ROUND",
+          "type": "png",
+          "targetPlatforms": ["gabbro"]
+        },
+        {
+          "file": "images/ns-face-round-logo-aplite.png",
+          "name": "IMAGE_NS_FACE_ROUND_LOGO",
+          "type": "png",
+          "targetPlatforms": ["aplite"]
+        },
+        {
+          "file": "images/ns-face-round-logo-color.png",
+          "name": "IMAGE_NS_FACE_ROUND_LOGO",
+          "type": "png",
+          "targetPlatforms": ["basalt"]
+        },
+        {
+          "file": "images/ns-face-round-logo-chalk.png",
+          "name": "IMAGE_NS_FACE_ROUND_LOGO",
+          "type": "png",
+          "targetPlatforms": ["chalk"]
+        },
+        {
+          "file": "images/ns-face-round-logo-diorite.png",
+          "name": "IMAGE_NS_FACE_ROUND_LOGO",
+          "type": "png",
+          "targetPlatforms": ["diorite"]
+        },
+        {
+          "file": "images/ns-face-round-logo-emery.png",
+          "name": "IMAGE_NS_FACE_ROUND_LOGO",
+          "type": "png",
+          "targetPlatforms": ["emery"]
+        },
+        {
+          "file": "images/ns-face-round-logo-flint.png",
+          "name": "IMAGE_NS_FACE_ROUND_LOGO",
+          "type": "png",
+          "targetPlatforms": ["flint"]
+        },
+        {
+          "file": "images/ns-face-round-logo-gabbro.png",
+          "name": "IMAGE_NS_FACE_ROUND_LOGO",
+          "type": "png",
+          "targetPlatforms": ["gabbro"]
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}
