@@ -303,7 +303,7 @@ void hands_draw_minute_hand(GContext *ctx, GPath *minute_path, GPoint center, st
     minute_hand_length = 79;
     tip_radius = 3;
   } else if (minute_path == s_minute_arrow_emery) {
-    minute_hand_length = 88;
+    minute_hand_length = 84;
     tip_radius = 4;
   } else if (minute_path == s_minute_arrow_gabbro) {
     minute_hand_length = 115;
