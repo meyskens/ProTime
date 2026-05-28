@@ -6,8 +6,8 @@
   // Gabbro - hour hand width 14, minute hand width 12
   #define HOUR_HAND_LENGTH 78
   #define MINUTE_HAND_LENGTH 115
-  #define HOUR_TIP_RADIUS 7
-  #define MINUTE_TIP_RADIUS 6
+  #define HOUR_TIP_RADIUS 6
+  #define MINUTE_TIP_RADIUS 5
 #elif PBL_DISPLAY_WIDTH == 200 && PBL_DISPLAY_HEIGHT == 228
   // Emery - hour hand width 12, minute hand width 10
   #define HOUR_HAND_LENGTH 60
