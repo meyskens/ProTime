@@ -1,39 +1,7 @@
 #include "hands.h"
 #include "config.h"
 
-// Platform-specific hand parameters defined at compile time
-#if PBL_DISPLAY_WIDTH == 260 && PBL_DISPLAY_HEIGHT == 260
-  // Gabbro - hour hand width 14, minute hand width 12
-  #define HOUR_HAND_LENGTH 78
-  #define MINUTE_HAND_LENGTH 115
-  #define HOUR_TIP_RADIUS 5
-  #define MINUTE_TIP_RADIUS 3
-#elif PBL_DISPLAY_WIDTH == 200 && PBL_DISPLAY_HEIGHT == 228
-  // Emery - hour hand width 12, minute hand width 10
-  #define HOUR_HAND_LENGTH 60
-  #define MINUTE_HAND_LENGTH 84
-  #define HOUR_TIP_RADIUS 4
-  #define MINUTE_TIP_RADIUS 2
-#elif PBL_DISPLAY_WIDTH == 180 && PBL_DISPLAY_HEIGHT == 180
-  // Chalk - hour hand width 10, minute hand width 10
-  #define HOUR_HAND_LENGTH 51
-  #define MINUTE_HAND_LENGTH 75
-  #define HOUR_TIP_RADIUS 4
-  #define MINUTE_TIP_RADIUS 2
-#elif defined(PBL_ROUND)
-  // Round watches (Chalk, Gabbro) - hour hand width 8, minute hand width 8
-  #define HOUR_HAND_LENGTH 34
-  #define MINUTE_HAND_LENGTH 50
-  #define HOUR_TIP_RADIUS 3
-  #define MINUTE_TIP_RADIUS 2
-#else
-  // Standard rectangular (aplite, basalt) - hour hand width 10, minute hand width 8
-  #define HOUR_HAND_LENGTH 37
-  #define MINUTE_HAND_LENGTH 55
-  #define HOUR_TIP_RADIUS 3
-  #define MINUTE_TIP_RADIUS 2
-#endif
-
+// Platform-specific hand parameters
 static GPath *s_minute_arrow;
 static GPath *s_hour_arrow;
 static GPath *s_minute_arrow_round;
@@ -45,104 +13,194 @@ static GPath *s_hour_arrow_emery;
 static GPath *s_minute_arrow_gabbro;
 static GPath *s_hour_arrow_gabbro;
 
-// Hand path definitions
+// Hand path definitions with rounded tips (13 points for smoother curve)
 const GPathInfo MINUTE_HAND_POINTS = {
-  4,
+  13,
   (GPoint []) {
-    { -3, 16 },
-    { 3, 16 },
-    { 3, -56 },
-    { -3, -56 }
+    { -4, 16 },
+    { 4, 16 },
+    { 4, -55 },
+    { 4, -58 },
+    { 4, -61 },
+    { 3, -63 },
+    { 2, -64 },
+    { 0, -65 },
+    { -2, -64 },
+    { -3, -63 },
+    { -4, -61 },
+    { -4, -58 },
+    { -4, -55 }
   }
 };
 
 const GPathInfo HOUR_HAND_POINTS = {
-  4,
+  13,
   (GPoint []) {
     { -5, 16 },
     { 5, 16 },
-    { 5, -38 },
-    { -5, -38 }
+    { 5, -37 },
+    { 5, -40 },
+    { 5, -43 },
+    { 4, -45 },
+    { 3, -46 },
+    { 0, -47 },
+    { -3, -46 },
+    { -4, -45 },
+    { -5, -43 },
+    { -5, -40 },
+    { -5, -37 }
   }
 };
 
 const GPathInfo MINUTE_HAND_POINTS_ROUND = {
-  4,
+  13,
   (GPoint []) {
-    { -3, 16 },
-    { 3, 16 },
-    { 3, -53 },
-    { -3, -53 }
+    { -4, 16 },
+    { 4, 16 },
+    { 4, -52 },
+    { 4, -55 },
+    { 4, -58 },
+    { 3, -60 },
+    { 2, -61 },
+    { 0, -62 },
+    { -2, -61 },
+    { -3, -60 },
+    { -4, -58 },
+    { -4, -55 },
+    { -4, -52 }
   }
 };
 
 const GPathInfo HOUR_HAND_POINTS_ROUND = {
-  4,
+  13,
   (GPoint []) {
     { -4, 16 },
     { 4, 16 },
-    { 4, -37 },
-    { -4, -37 }
+    { 4, -36 },
+    { 4, -39 },
+    { 4, -42 },
+    { 3, -44 },
+    { 2, -45 },
+    { 0, -46 },
+    { -2, -45 },
+    { -3, -44 },
+    { -4, -42 },
+    { -4, -39 },
+    { -4, -36 }
   }
 };
 
 const GPathInfo MINUTE_HAND_POINTS_CHALK = {
-  4,
+  13,
   (GPoint []) {
-    { -4, 20 },
-    { 4, 20 },
-    { 4, -79 },
-    { -4, -79 }
+    { -5, 20 },
+    { 5, 20 },
+    { 5, -78 },
+    { 5, -81 },
+    { 5, -84 },
+    { 4, -86 },
+    { 3, -87 },
+    { 0, -88 },
+    { -3, -87 },
+    { -4, -86 },
+    { -5, -84 },
+    { -5, -81 },
+    { -5, -78 }
   }
 };
 
 const GPathInfo HOUR_HAND_POINTS_CHALK = {
-  4,
+  13,
   (GPoint []) {
     { -5, 20 },
     { 5, 20 },
-    { 5, -55 },
-    { -5, -55 }
+    { 5, -54 },
+    { 5, -57 },
+    { 5, -60 },
+    { 4, -62 },
+    { 3, -63 },
+    { 0, -64 },
+    { -3, -63 },
+    { -4, -62 },
+    { -5, -60 },
+    { -5, -57 },
+    { -5, -54 }
   }
 };
 
 const GPathInfo MINUTE_HAND_POINTS_EMERY = {
-  4,
+  13,
   (GPoint []) {
-    { -4, 20 },
-    { 4, 20 },
-    { 4, -88 },
-    { -4, -88 }
+    { -5, 20 },
+    { 5, 20 },
+    { 5, -87 },
+    { 5, -90 },
+    { 5, -93 },
+    { 4, -95 },
+    { 3, -96 },
+    { 0, -97 },
+    { -3, -96 },
+    { -4, -95 },
+    { -5, -93 },
+    { -5, -90 },
+    { -5, -87 }
   }
 };
 
 const GPathInfo HOUR_HAND_POINTS_EMERY = {
-  4,
+  13,
   (GPoint []) {
     { -6, 20 },
     { 6, 20 },
-    { 6, -60 },
-    { -6, -60 }
+    { 6, -59 },
+    { 6, -62 },
+    { 6, -65 },
+    { 5, -67 },
+    { 4, -68 },
+    { 0, -69 },
+    { -4, -68 },
+    { -5, -67 },
+    { -6, -65 },
+    { -6, -62 },
+    { -6, -59 }
   }
 };
 
 const GPathInfo MINUTE_HAND_POINTS_GABBRO = {
-  4,
+  13,
   (GPoint []) {
-    { -5, 24 },
-    { 5, 24 },
-    { 5, -115 },
-    { -5, -115 }
+    { -6, 24 },
+    { 6, 24 },
+    { 6, -114 },
+    { 6, -117 },
+    { 6, -120 },
+    { 5, -122 },
+    { 4, -123 },
+    { 0, -124 },
+    { -4, -123 },
+    { -5, -122 },
+    { -6, -120 },
+    { -6, -117 },
+    { -6, -114 }
   }
 };
 
 const GPathInfo HOUR_HAND_POINTS_GABBRO = {
-  4,
+  13,
   (GPoint []) {
     { -7, 24 },
     { 7, 24 },
-    { 7, -78 },
-    { -7, -78 }
+    { 7, -77 },
+    { 7, -80 },
+    { 7, -83 },
+    { 6, -85 },
+    { 4, -86 },
+    { 0, -87 },
+    { -4, -86 },
+    { -6, -85 },
+    { -7, -83 },
+    { -7, -80 },
+    { -7, -77 }
   }
 };
 
@@ -290,13 +348,6 @@ void hands_draw_hour_hand(GContext *ctx, GPath *hour_path, GPoint center, struct
   gpath_rotate_to(hour_path, angle);
   gpath_draw_filled(ctx, hour_path);
   gpath_draw_outline(ctx, hour_path);
-
-  // Draw rounded tip using compile-time defined constants
-  GPoint tip = {
-    .x = (int16_t)(sin_lookup(angle) * (int32_t)HOUR_HAND_LENGTH / TRIG_MAX_RATIO) + center.x,
-    .y = (int16_t)(-cos_lookup(angle) * (int32_t)HOUR_HAND_LENGTH / TRIG_MAX_RATIO) + center.y,
-  };
-  graphics_fill_circle(ctx, tip, HOUR_TIP_RADIUS);
 }
 
 void hands_draw_minute_hand(GContext *ctx, GPath *minute_path, GPoint center, struct tm *t) {
@@ -307,13 +358,6 @@ void hands_draw_minute_hand(GContext *ctx, GPath *minute_path, GPoint center, st
   gpath_rotate_to(minute_path, angle);
   gpath_draw_filled(ctx, minute_path);
   gpath_draw_outline(ctx, minute_path);
-
-  // Draw rounded tip using compile-time defined constants
-  GPoint tip = {
-    .x = (int16_t)(sin_lookup(angle) * (int32_t)MINUTE_HAND_LENGTH / TRIG_MAX_RATIO) + center.x,
-    .y = (int16_t)(-cos_lookup(angle) * (int32_t)MINUTE_HAND_LENGTH / TRIG_MAX_RATIO) + center.y,
-  };
-  graphics_fill_circle(ctx, tip, MINUTE_TIP_RADIUS);
 }
 
 void hands_draw_second_hand(GContext *ctx, GPoint center, struct tm *t) {
