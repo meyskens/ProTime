@@ -16,20 +16,20 @@
   #define MINUTE_TIP_RADIUS 4
 #elif PBL_DISPLAY_WIDTH == 180 && PBL_DISPLAY_HEIGHT == 180
   // Chalk - hour hand width 10, minute hand width 10
-  #define HOUR_HAND_LENGTH 55
-  #define MINUTE_HAND_LENGTH 79
+  #define HOUR_HAND_LENGTH 51
+  #define MINUTE_HAND_LENGTH 75
   #define HOUR_TIP_RADIUS 4
   #define MINUTE_TIP_RADIUS 4
 #elif defined(PBL_ROUND)
-  // Round (Basalt) - hour hand width 8, minute hand width 8
-  #define HOUR_HAND_LENGTH 37
-  #define MINUTE_HAND_LENGTH 53
+  // Round watches (Chalk, Gabbro) - hour hand width 8, minute hand width 8
+  #define HOUR_HAND_LENGTH 34
+  #define MINUTE_HAND_LENGTH 50
   #define HOUR_TIP_RADIUS 3
   #define MINUTE_TIP_RADIUS 3
 #else
-  // Standard rectangular (aplite) - hour hand width 10, minute hand width 8
-  #define HOUR_HAND_LENGTH 38
-  #define MINUTE_HAND_LENGTH 56
+  // Standard rectangular (aplite, basalt) - hour hand width 10, minute hand width 8
+  #define HOUR_HAND_LENGTH 37
+  #define MINUTE_HAND_LENGTH 55
   #define HOUR_TIP_RADIUS 3
   #define MINUTE_TIP_RADIUS 3
 #endif
