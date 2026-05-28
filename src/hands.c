@@ -3,30 +3,35 @@
 
 // Platform-specific hand parameters defined at compile time
 #if PBL_DISPLAY_WIDTH == 260 && PBL_DISPLAY_HEIGHT == 260
-  // Gabbro
+  // Gabbro - hour hand width 14, minute hand width 12
   #define HOUR_HAND_LENGTH 78
   #define MINUTE_HAND_LENGTH 115
-  #define TIP_RADIUS 4
+  #define HOUR_TIP_RADIUS 7
+  #define MINUTE_TIP_RADIUS 6
 #elif PBL_DISPLAY_WIDTH == 200 && PBL_DISPLAY_HEIGHT == 228
-  // Emery
+  // Emery - hour hand width 12, minute hand width 10
   #define HOUR_HAND_LENGTH 60
   #define MINUTE_HAND_LENGTH 84
-  #define TIP_RADIUS 4
+  #define HOUR_TIP_RADIUS 6
+  #define MINUTE_TIP_RADIUS 5
 #elif PBL_DISPLAY_WIDTH == 180 && PBL_DISPLAY_HEIGHT == 180
-  // Chalk
+  // Chalk - hour hand width 10, minute hand width 10
   #define HOUR_HAND_LENGTH 55
   #define MINUTE_HAND_LENGTH 79
-  #define TIP_RADIUS 3
+  #define HOUR_TIP_RADIUS 5
+  #define MINUTE_TIP_RADIUS 5
 #elif defined(PBL_ROUND)
-  // Round (Basalt)
+  // Round (Basalt) - hour hand width 8, minute hand width 8
   #define HOUR_HAND_LENGTH 37
   #define MINUTE_HAND_LENGTH 53
-  #define TIP_RADIUS 3
+  #define HOUR_TIP_RADIUS 4
+  #define MINUTE_TIP_RADIUS 4
 #else
-  // Standard rectangular
+  // Standard rectangular - hour hand width 10, minute hand width 8
   #define HOUR_HAND_LENGTH 38
   #define MINUTE_HAND_LENGTH 56
-  #define TIP_RADIUS 3
+  #define HOUR_TIP_RADIUS 5
+  #define MINUTE_TIP_RADIUS 4
 #endif
 
 static GPath *s_minute_arrow;
@@ -291,7 +296,7 @@ void hands_draw_hour_hand(GContext *ctx, GPath *hour_path, GPoint center, struct
     .x = (int16_t)(sin_lookup(angle) * (int32_t)HOUR_HAND_LENGTH / TRIG_MAX_RATIO) + center.x,
     .y = (int16_t)(-cos_lookup(angle) * (int32_t)HOUR_HAND_LENGTH / TRIG_MAX_RATIO) + center.y,
   };
-  graphics_fill_circle(ctx, tip, TIP_RADIUS);
+  graphics_fill_circle(ctx, tip, HOUR_TIP_RADIUS);
 }
 
 void hands_draw_minute_hand(GContext *ctx, GPath *minute_path, GPoint center, struct tm *t) {
@@ -308,7 +313,7 @@ void hands_draw_minute_hand(GContext *ctx, GPath *minute_path, GPoint center, st
     .x = (int16_t)(sin_lookup(angle) * (int32_t)MINUTE_HAND_LENGTH / TRIG_MAX_RATIO) + center.x,
     .y = (int16_t)(-cos_lookup(angle) * (int32_t)MINUTE_HAND_LENGTH / TRIG_MAX_RATIO) + center.y,
   };
-  graphics_fill_circle(ctx, tip, TIP_RADIUS);
+  graphics_fill_circle(ctx, tip, MINUTE_TIP_RADIUS);
 }
 
 void hands_draw_second_hand(GContext *ctx, GPoint center, struct tm *t) {
