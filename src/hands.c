@@ -1,6 +1,34 @@
 #include "hands.h"
 #include "config.h"
 
+// Platform-specific hand parameters defined at compile time
+#if PBL_DISPLAY_WIDTH == 260 && PBL_DISPLAY_HEIGHT == 260
+  // Gabbro
+  #define HOUR_HAND_LENGTH 78
+  #define MINUTE_HAND_LENGTH 115
+  #define TIP_RADIUS 4
+#elif PBL_DISPLAY_WIDTH == 200 && PBL_DISPLAY_HEIGHT == 228
+  // Emery
+  #define HOUR_HAND_LENGTH 60
+  #define MINUTE_HAND_LENGTH 84
+  #define TIP_RADIUS 4
+#elif PBL_DISPLAY_WIDTH == 180 && PBL_DISPLAY_HEIGHT == 180
+  // Chalk
+  #define HOUR_HAND_LENGTH 55
+  #define MINUTE_HAND_LENGTH 79
+  #define TIP_RADIUS 3
+#elif defined(PBL_ROUND)
+  // Round (Basalt)
+  #define HOUR_HAND_LENGTH 37
+  #define MINUTE_HAND_LENGTH 53
+  #define TIP_RADIUS 3
+#else
+  // Standard rectangular
+  #define HOUR_HAND_LENGTH 38
+  #define MINUTE_HAND_LENGTH 56
+  #define TIP_RADIUS 3
+#endif
+
 static GPath *s_minute_arrow;
 static GPath *s_hour_arrow;
 static GPath *s_minute_arrow_round;
@@ -258,30 +286,12 @@ void hands_draw_hour_hand(GContext *ctx, GPath *hour_path, GPoint center, struct
   gpath_draw_filled(ctx, hour_path);
   gpath_draw_outline(ctx, hour_path);
 
-  // Draw rounded tip - use appropriate length and radius based on hand type
-  int16_t hour_hand_length;
-  int16_t tip_radius;
-  if (hour_path == s_hour_arrow_round) {
-    hour_hand_length = 37;
-    tip_radius = 3;
-  } else if (hour_path == s_hour_arrow_chalk) {
-    hour_hand_length = 55;
-    tip_radius = 3;
-  } else if (hour_path == s_hour_arrow_emery) {
-    hour_hand_length = 60;
-    tip_radius = 4;
-  } else if (hour_path == s_hour_arrow_gabbro) {
-    hour_hand_length = 78;
-    tip_radius = 4;
-  } else {
-    hour_hand_length = 38;
-    tip_radius = 3;
-  }
+  // Draw rounded tip using compile-time defined constants
   GPoint tip = {
-    .x = (int16_t)(sin_lookup(angle) * (int32_t)hour_hand_length / TRIG_MAX_RATIO) + center.x,
-    .y = (int16_t)(-cos_lookup(angle) * (int32_t)hour_hand_length / TRIG_MAX_RATIO) + center.y,
+    .x = (int16_t)(sin_lookup(angle) * (int32_t)HOUR_HAND_LENGTH / TRIG_MAX_RATIO) + center.x,
+    .y = (int16_t)(-cos_lookup(angle) * (int32_t)HOUR_HAND_LENGTH / TRIG_MAX_RATIO) + center.y,
   };
-  graphics_fill_circle(ctx, tip, tip_radius);
+  graphics_fill_circle(ctx, tip, TIP_RADIUS);
 }
 
 void hands_draw_minute_hand(GContext *ctx, GPath *minute_path, GPoint center, struct tm *t) {
@@ -293,30 +303,12 @@ void hands_draw_minute_hand(GContext *ctx, GPath *minute_path, GPoint center, st
   gpath_draw_filled(ctx, minute_path);
   gpath_draw_outline(ctx, minute_path);
 
-  // Draw rounded tip - use appropriate length and radius based on hand type
-  int16_t minute_hand_length;
-  int16_t tip_radius;
-  if (minute_path == s_minute_arrow_round) {
-    minute_hand_length = 53;
-    tip_radius = 3;
-  } else if (minute_path == s_minute_arrow_chalk) {
-    minute_hand_length = 79;
-    tip_radius = 3;
-  } else if (minute_path == s_minute_arrow_emery) {
-    minute_hand_length = 84;
-    tip_radius = 4;
-  } else if (minute_path == s_minute_arrow_gabbro) {
-    minute_hand_length = 115;
-    tip_radius = 4;
-  } else {
-    minute_hand_length = 56;
-    tip_radius = 3;
-  }
+  // Draw rounded tip using compile-time defined constants
   GPoint tip = {
-    .x = (int16_t)(sin_lookup(angle) * (int32_t)minute_hand_length / TRIG_MAX_RATIO) + center.x,
-    .y = (int16_t)(-cos_lookup(angle) * (int32_t)minute_hand_length / TRIG_MAX_RATIO) + center.y,
+    .x = (int16_t)(sin_lookup(angle) * (int32_t)MINUTE_HAND_LENGTH / TRIG_MAX_RATIO) + center.x,
+    .y = (int16_t)(-cos_lookup(angle) * (int32_t)MINUTE_HAND_LENGTH / TRIG_MAX_RATIO) + center.y,
   };
-  graphics_fill_circle(ctx, tip, tip_radius);
+  graphics_fill_circle(ctx, tip, TIP_RADIUS);
 }
 
 void hands_draw_second_hand(GContext *ctx, GPoint center, struct tm *t) {
