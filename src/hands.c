@@ -252,14 +252,25 @@ void hands_draw_date_box(GContext *ctx, GRect bounds) {
 void hands_draw_hour_hand(GContext *ctx, GPath *hour_path, GPoint center, struct tm *t) {
   graphics_context_set_fill_color(ctx, GColorFromHEX(0x000055));
   graphics_context_set_stroke_color(ctx, GColorFromHEX(0x000055));
-  
+
   int32_t angle = (TRIG_MAX_ANGLE * (((t->tm_hour % 12) * 6) + (t->tm_min / 10))) / (12 * 6);
   gpath_rotate_to(hour_path, angle);
   gpath_draw_filled(ctx, hour_path);
   gpath_draw_outline(ctx, hour_path);
-  
-  // Draw rounded tip
-  int16_t hour_hand_length = 38;
+
+  // Draw rounded tip - use appropriate length based on hand type
+  int16_t hour_hand_length;
+  if (hour_path == s_hour_arrow_round) {
+    hour_hand_length = 37;
+  } else if (hour_path == s_hour_arrow_chalk) {
+    hour_hand_length = 55;
+  } else if (hour_path == s_hour_arrow_emery) {
+    hour_hand_length = 60;
+  } else if (hour_path == s_hour_arrow_gabbro) {
+    hour_hand_length = 78;
+  } else {
+    hour_hand_length = 38;
+  }
   GPoint tip = {
     .x = (int16_t)(sin_lookup(angle) * (int32_t)hour_hand_length / TRIG_MAX_RATIO) + center.x,
     .y = (int16_t)(-cos_lookup(angle) * (int32_t)hour_hand_length / TRIG_MAX_RATIO) + center.y,
