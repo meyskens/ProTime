@@ -12,26 +12,26 @@
   // Emery - hour hand width 12, minute hand width 10
   #define HOUR_HAND_LENGTH 60
   #define MINUTE_HAND_LENGTH 84
-  #define HOUR_TIP_RADIUS 6
-  #define MINUTE_TIP_RADIUS 5
+  #define HOUR_TIP_RADIUS 5
+  #define MINUTE_TIP_RADIUS 4
 #elif PBL_DISPLAY_WIDTH == 180 && PBL_DISPLAY_HEIGHT == 180
   // Chalk - hour hand width 10, minute hand width 10
   #define HOUR_HAND_LENGTH 55
   #define MINUTE_HAND_LENGTH 79
-  #define HOUR_TIP_RADIUS 5
-  #define MINUTE_TIP_RADIUS 5
+  #define HOUR_TIP_RADIUS 4
+  #define MINUTE_TIP_RADIUS 4
 #elif defined(PBL_ROUND)
   // Round (Basalt) - hour hand width 8, minute hand width 8
   #define HOUR_HAND_LENGTH 37
   #define MINUTE_HAND_LENGTH 53
-  #define HOUR_TIP_RADIUS 4
-  #define MINUTE_TIP_RADIUS 4
+  #define HOUR_TIP_RADIUS 3
+  #define MINUTE_TIP_RADIUS 3
 #else
-  // Standard rectangular - hour hand width 10, minute hand width 8
+  // Standard rectangular (aplite) - hour hand width 10, minute hand width 8
   #define HOUR_HAND_LENGTH 38
   #define MINUTE_HAND_LENGTH 56
-  #define HOUR_TIP_RADIUS 5
-  #define MINUTE_TIP_RADIUS 4
+  #define HOUR_TIP_RADIUS 3
+  #define MINUTE_TIP_RADIUS 3
 #endif
 
 static GPath *s_minute_arrow;
