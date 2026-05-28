@@ -49,10 +49,10 @@ static GPath *s_hour_arrow_gabbro;
 const GPathInfo MINUTE_HAND_POINTS = {
   4,
   (GPoint []) {
-    { -4, 16 },
-    { 4, 16 },
-    { 4, -56 },
-    { -4, -56 }
+    { -3, 16 },
+    { 3, 16 },
+    { 3, -56 },
+    { -3, -56 }
   }
 };
 
@@ -69,10 +69,10 @@ const GPathInfo HOUR_HAND_POINTS = {
 const GPathInfo MINUTE_HAND_POINTS_ROUND = {
   4,
   (GPoint []) {
-    { -4, 16 },
-    { 4, 16 },
-    { 4, -53 },
-    { -4, -53 }
+    { -3, 16 },
+    { 3, 16 },
+    { 3, -53 },
+    { -3, -53 }
   }
 };
 
@@ -89,10 +89,10 @@ const GPathInfo HOUR_HAND_POINTS_ROUND = {
 const GPathInfo MINUTE_HAND_POINTS_CHALK = {
   4,
   (GPoint []) {
-    { -5, 20 },
-    { 5, 20 },
-    { 5, -79 },
-    { -5, -79 }
+    { -4, 20 },
+    { 4, 20 },
+    { 4, -79 },
+    { -4, -79 }
   }
 };
 
@@ -109,10 +109,10 @@ const GPathInfo HOUR_HAND_POINTS_CHALK = {
 const GPathInfo MINUTE_HAND_POINTS_EMERY = {
   4,
   (GPoint []) {
-    { -5, 20 },
-    { 5, 20 },
-    { 5, -88 },
-    { -5, -88 }
+    { -4, 20 },
+    { 4, 20 },
+    { 4, -88 },
+    { -4, -88 }
   }
 };
 
@@ -129,10 +129,10 @@ const GPathInfo HOUR_HAND_POINTS_EMERY = {
 const GPathInfo MINUTE_HAND_POINTS_GABBRO = {
   4,
   (GPoint []) {
-    { -6, 24 },
-    { 6, 24 },
-    { 6, -115 },
-    { -6, -115 }
+    { -5, 24 },
+    { 5, 24 },
+    { 5, -115 },
+    { -5, -115 }
   }
 };
 
