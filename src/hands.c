@@ -6,32 +6,32 @@
   // Gabbro - hour hand width 14, minute hand width 12
   #define HOUR_HAND_LENGTH 78
   #define MINUTE_HAND_LENGTH 115
-  #define HOUR_TIP_RADIUS 6
-  #define MINUTE_TIP_RADIUS 5
+  #define HOUR_TIP_RADIUS 5
+  #define MINUTE_TIP_RADIUS 3
 #elif PBL_DISPLAY_WIDTH == 200 && PBL_DISPLAY_HEIGHT == 228
   // Emery - hour hand width 12, minute hand width 10
   #define HOUR_HAND_LENGTH 60
   #define MINUTE_HAND_LENGTH 84
-  #define HOUR_TIP_RADIUS 5
-  #define MINUTE_TIP_RADIUS 4
+  #define HOUR_TIP_RADIUS 4
+  #define MINUTE_TIP_RADIUS 2
 #elif PBL_DISPLAY_WIDTH == 180 && PBL_DISPLAY_HEIGHT == 180
   // Chalk - hour hand width 10, minute hand width 10
   #define HOUR_HAND_LENGTH 51
   #define MINUTE_HAND_LENGTH 75
   #define HOUR_TIP_RADIUS 4
-  #define MINUTE_TIP_RADIUS 4
+  #define MINUTE_TIP_RADIUS 2
 #elif defined(PBL_ROUND)
   // Round watches (Chalk, Gabbro) - hour hand width 8, minute hand width 8
   #define HOUR_HAND_LENGTH 34
   #define MINUTE_HAND_LENGTH 50
   #define HOUR_TIP_RADIUS 3
-  #define MINUTE_TIP_RADIUS 3
+  #define MINUTE_TIP_RADIUS 2
 #else
   // Standard rectangular (aplite, basalt) - hour hand width 10, minute hand width 8
   #define HOUR_HAND_LENGTH 37
   #define MINUTE_HAND_LENGTH 55
   #define HOUR_TIP_RADIUS 3
-  #define MINUTE_TIP_RADIUS 3
+  #define MINUTE_TIP_RADIUS 2
 #endif
 
 static GPath *s_minute_arrow;
