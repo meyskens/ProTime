@@ -1,6 +1,6 @@
 {
   "name": "ProTime",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ProTime Watchface - NS/ProRail style watchface for Pebble smartwatches",
   "main": "src/js/app.js",
   "keywords": [
