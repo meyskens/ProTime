@@ -25,8 +25,8 @@ const sizes = [
   { name: 'ns-face-round-diorite', width: 144, height: 168, fit: 'contain' },
   // Emery: 200x228, Color
   { name: 'ns-face-round-emery', width: 200, height: 228, fit: 'contain' },
-  // Flint: 200x228, Color, Round
-  { name: 'ns-face-round-flint', width: 200, height: 228, fit: 'contain' },
+  // Flint: 144 x 168, BW
+  { name: 'round-flint', width: 144, height: 168, fit: 'contain' },
   // Gabbro: 260x260, Color, Round
   { name: 'ns-face-round-gabbro', width: 260, height: 260, fit: 'contain' },
 ];
@@ -38,7 +38,7 @@ const logoSizes = [
   { name: 'ns-face-round-logo-chalk', width: 180, height: 180, fit: 'contain' },
   { name: 'ns-face-round-logo-diorite', width: 144, height: 168, fit: 'contain' },
   { name: 'ns-face-round-logo-emery', width: 200, height: 228, fit: 'contain' },
-  { name: 'ns-face-round-logo-flint', width: 200, height: 228, fit: 'contain' },
+  { name: 'ns-face-round-logo-flint', width: 144, height: 168, fit: 'contain' },
   { name: 'ns-face-round-logo-gabbro', width: 260, height: 260, fit: 'contain' },
 ];
 
